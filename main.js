@@ -60,6 +60,6 @@ function downloadHints() {
     const element = document.createElement('a');
     const file = new Blob([hints], {type: 'text/markdown'});
     element.href = URL.createObjectURL(file);
-    element.download = 'hinter.md';
+    element.download = 'hinter_and_sample.md';
     element.click();
 } 

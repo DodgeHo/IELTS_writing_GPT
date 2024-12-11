@@ -9,29 +9,30 @@
 </head>
 <body>
     <h1>IELTS Writing Hinter</h1>
-    
-    <div>
-        <label for="apiKey">API Key:</label>
-        <input type="password" id="apiKey" placeholder="Enter your API key">
-    </div>
+    <h3>请在下方输入一个雅思写作的题目，系统会生成写作提示和相关词汇建议以及写作范文。</h3>
+    <div style="display: flex; gap: 40px; margin: 0 20px;">
+        <div>
+            <label for="apiKey">API Key:</label>
+            <input type="password" id="apiKey" placeholder="Enter your API key" style="margin-right: 15px;">
+        </div>
 
-    <div>
-        <label for="baseUrl">Base URL:</label>
-        <input type="text" id="baseUrl" placeholder="Enter the base URL">
-    </div>
+        <div>
+            <label for="baseUrl">Base URL:</label>
+            <input type="text" id="baseUrl" placeholder="Enter the base URL" style="margin-right: 15px;">
+        </div>
 
-    <div>
-        <label for="modelName">Model Name:</label>
-        <input type="text" id="modelName" placeholder="Enter the model name">
+        <div>
+            <label for="modelName">Model Name:</label>
+            <input type="text" id="modelName" placeholder="Enter the model name" style="margin-right: 15px;">
+        </div>
     </div>
-    
     <div>
+        <h2>Topic Text</h2>
         <label for="task">Task:</label>
         <select id="task">
             <option value="1">Task 1</option>
             <option value="2">Task 2</option>
         </select>
-        <h2>Topic Text</h2>
         <div class="textarea-container">
             <textarea id="topicText" rows="8"></textarea>
             <div class="upload-controls">
