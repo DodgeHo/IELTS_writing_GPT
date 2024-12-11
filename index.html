@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IELTS Writing Hinter</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+</head>
+<body>
+    <h1>IELTS Writing Hinter</h1>
+    
+    <div>
+        <label for="apiKey">API Key:</label>
+        <input type="password" id="apiKey" placeholder="Enter your API key">
+    </div>
+
+    <div>
+        <label for="baseUrl">Base URL:</label>
+        <input type="text" id="baseUrl" placeholder="Enter the base URL">
+    </div>
+
+    <div>
+        <label for="modelName">Model Name:</label>
+        <input type="text" id="modelName" placeholder="Enter the model name">
+    </div>
+    
+    <div>
+        <label for="task">Task:</label>
+        <select id="task">
+            <option value="1">Task 1</option>
+            <option value="2">Task 2</option>
+        </select>
+        <h2>Topic Text</h2>
+        <div class="textarea-container">
+            <textarea id="topicText" rows="8"></textarea>
+            <div class="upload-controls">
+                <input type="file" id="fileInput" accept=".txt" style="display: none;">
+                <button class="upload" id="uploadButton">Upload a File as Topic</button>
+            </div>
+        </div>
+    </div>
+    <br />
+    <div class="button-group">
+        <button onclick="processTopic()">Generate Writing Hints and Model Essay</button>
+    </div>
+    <div>
+        <div class="status-header">
+            <h2>Processing Status:</h2>
+            <div id="statusSpinner" class="loading-spinner" style="display: none;"></div>
+        </div>
+        <pre id="status"></pre>
+    </div>
+
+    <div>
+        <h2>Generated Output:</h2>
+        <pre id="hints"></pre>
+    </div>
+    
+    <button id="downloadBtn" style="display: none;" onclick="downloadHints()">Download Results</button>
+
+    <script src="hinter.js"></script>
+    <script src="main.js"></script>
+</body>
+</html>

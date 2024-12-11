@@ -1,0 +1,61 @@
+                    GNU AFFERO GENERAL PUBLIC LICENSE
+                       Version 3, 19 November 2007
+
+IELTS Writing GPT Assistant
+Copyright (C) 2024
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU Affero General Public License as published
+by the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU Affero General Public License for more details.
+
+You should have received a copy of the GNU Affero General Public License
+along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
+Additional Terms and Conditions:
+
+1. Non-Commercial Use Only
+   This software and its derivatives may not be used for commercial purposes 
+   without explicit written permission from the copyright holder. Commercial 
+   purposes include, but are not limited to:
+   - Using the software in commercial products or services
+   - Using the software to provide commercial services
+   - Selling or licensing the software
+   - Using the software in any way that generates revenue
+
+2. Educational Use
+   This software is primarily intended for educational purposes. Educational 
+   institutions and individual learners may freely use this software for 
+   non-commercial educational purposes.
+
+3. Attribution Requirement
+   Any use or distribution of this software must maintain attribution to 
+   the original authors and must clearly indicate any changes made to the 
+   original software.
+
+4. Network Use
+   If you use this software to provide network services (including but not 
+   limited to web services), you must make the complete source code of your 
+   modified version available to the users of that service.
+
+5. Disclaimer
+   THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+   IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+   FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+   AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+   LIABILITY.
+
+For questions about licensing or commercial use, please contact:
+[Your Contact Information]
+
+Note: This is a combined license of AGPL-3.0 with additional non-commercial 
+use restrictions. In case of any conflict between these additional terms and 
+the AGPL-3.0, these additional terms shall take precedence.
+
+For the complete text of the GNU Affero General Public License version 3, 
+please visit: https://www.gnu.org/licenses/agpl-3.0.html
