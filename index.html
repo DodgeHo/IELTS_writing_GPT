@@ -8,8 +8,8 @@
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 </head>
 <body>
-    <h1>IELTS Writing Hinter</h1>
-    <h3>请在下方输入一个雅思写作的题目，系统会生成写作提示和相关词汇建议以及写作范文。</h3>
+    <h1>IELTS Writing GPT</h1>
+    <label>GPT模型设置：</label>
     <div style="display: flex; gap: 40px; margin: 0 20px;">
         <div>
             <label for="apiKey">API Key:</label>
@@ -26,6 +26,11 @@
             <input type="text" id="modelName" placeholder="Enter the model name" style="margin-right: 15px;">
         </div>
     </div>
+    <hr style="border: 1px solid black; width: 100%;">
+
+    <h1>IELTS Writing Hinter</h1>
+    <h3>请在下方输入一个雅思写作的题目，系统会生成写作提示和相关词汇建议以及写作范文。</h3>
+
     <div>
         <h2>Topic Text</h2>
         <label for="task">Task:</label>
@@ -33,18 +38,24 @@
             <option value="1">Task 1</option>
             <option value="2">Task 2</option>
         </select>
-        <div class="textarea-container">
+        <div class="upload-controls">
+            <input type="file" id="fileInput" accept=".txt" style="display: none;">
+            <button class="upload" id="uploadButton">Upload a File as Topic</button>
+        </div>
+        <div class="textarea-wrapper">
             <textarea id="topicText" rows="8"></textarea>
-            <div class="upload-controls">
-                <input type="file" id="fileInput" accept=".txt" style="display: none;">
-                <button class="upload" id="uploadButton">Upload a File as Topic</button>
-            </div>
+        </div>
+        <div class="textarea-container">
+
+
         </div>
     </div>
     <br />
     <div class="button-group">
         <button onclick="processTopic()">Generate Writing Hints and Model Essay</button>
     </div>
+    <hr style="border: 1px solid black; width: 100%;">
+
     <div>
         <div class="status-header">
             <h2>Processing Status:</h2>

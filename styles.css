@@ -30,8 +30,6 @@ input[type="password"] {
 }
 
 textarea {
-    width: 100%;
-    padding: 10px;
     border: 1px solid #ddd;
     border-radius: 4px;
     resize: vertical;
@@ -57,12 +55,18 @@ button {
 
 button.upload {
     background-color: #ccc;
-    color: #666;
+    color: #ffffff;
     padding: 5px 15px;
+    position: relative;
+    float: right;
+    margin: 0 0 10px 0;
 }
 
 button:hover {
     background-color: #45a049;
+}
+button.upload:hover {
+    background-color: #000000;
 }
 
 /* 状态和提示区域样式 */
@@ -156,22 +160,21 @@ pre.completed {
     gap: 10px;
 } 
 
-.textarea-container {
-    position: relative;
-    margin-bottom: 20px;
-}
-
 .textarea-container textarea {
     width: 100%;
     margin-bottom: 0; /* 移除底部边距 */
 }
 
-.textarea-container button.upload {
-    position: absolute;
-    right: 0;
-    margin-top: 10px; /* 与 textarea 之间的间距 */
+.upload-controls {
+    margin-bottom: 10px;
 }
 
-.upload-controls {
-    margin-top: 10px;
+.textarea-wrapper {
+    width: 100%;
+}
+
+textarea#topicText {
+    width: 100%;
+    padding: 10px;
+    box-sizing: border-box;
 }
