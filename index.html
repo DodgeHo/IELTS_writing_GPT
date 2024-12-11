@@ -28,50 +28,79 @@
     </div>
     <hr style="border: 1px solid black; width: 100%;">
 
-    <h1>IELTS Writing Hinter</h1>
-    <h3>请在下方输入一个雅思写作的题目，系统会生成写作提示和相关词汇建议以及写作范文。</h3>
-
-    <div>
-        <h2>Topic Text</h2>
-        <label for="task">Task:</label>
-        <select id="task">
-            <option value="1">Task 1</option>
-            <option value="2">Task 2</option>
-        </select>
-        <div class="upload-controls">
-            <input type="file" id="fileInput" accept=".txt" style="display: none;">
-            <button class="upload" id="uploadButton">Upload a File as Topic</button>
+    <div class="tab-container">
+        <div class="tab-buttons">
+            <button class="tab-button active h3" onclick="switchTab('hinter')">IELTS Writing Hinter 写作提示生成</button>
+            <button class="tab-button h3" onclick="switchTab('evaluator')">IELTS Writing Evaluator 写作评分反馈</button>
         </div>
-        <div class="textarea-wrapper">
-            <textarea id="topicText" rows="8"></textarea>
+
+        <!-- 写作提示标签页内容 -->
+        <div id="hinterTab" class="tab-content active">
+            <h3>请在下方输入一个雅思写作的题目，系统会生成写作提示和相关词汇建议以及写作范文。</h3>
+            <div>
+                <h2>Topic Text</h2>
+                <div id="taskSelectorContainer"></div>
+                <div class="upload-controls">
+                    <input type="file" id="fileInput" accept=".txt" style="display: none;">
+                    <button class="upload" id="uploadButton">上传txt到文本框</button>
+                </div>
+                <div class="textarea-wrapper">
+                    <textarea id="topicText" rows="8"></textarea>
+                </div>
+            </div>
+            <br />
+            <div class="button-group">
+                <button onclick="processTopic()">一键生成</button>
+            </div>
         </div>
-        <div class="textarea-container">
 
-
+        <!-- 写作评分标签页内容 -->
+        <div id="evaluatorTab" class="tab-content">
+            <h3>请在下方输入一篇雅思写作题目及你的作文，系统会生成写作评分反馈和优化建议。</h3>
+            <div>
+                <h2>Essay Text</h2>
+                <div id="taskSelectorContainer2"></div>
+                <div class="upload-controls">
+                    <input type="file" id="fileInput" accept=".txt" style="display: none;">
+                    <button class="upload" id="uploadButton2">上传txt到文本框</button>
+                </div>
+                <div class="textarea-wrapper">
+                    <textarea id="essayText" rows="8"></textarea>
+                </div>
+            </div>
+            <br />
+            <div class="button-group">
+                <button onclick="processEvaluation()">一键生成</button>
+            </div>
         </div>
     </div>
-    <br />
-    <div class="button-group">
-        <button onclick="processTopic()">Generate Writing Hints and Model Essay</button>
-    </div>
+
     <hr style="border: 1px solid black; width: 100%;">
 
     <div>
         <div class="status-header">
-            <h2>Processing Status:</h2>
+            <h2>GPT 状态:</h2>
             <div id="statusSpinner" class="loading-spinner" style="display: none;"></div>
         </div>
         <pre id="status"></pre>
     </div>
 
     <div>
-        <h2>Generated Output:</h2>
-        <pre id="hints"></pre>
+        <h2>生成结果:</h2>
+        <pre id="finalResults"></pre>
     </div>
     
-    <button id="downloadBtn" style="display: none;" onclick="downloadHints()">Download Results</button>
+    <button id="downloadHintBtn" class="download-btn" style="display: none;" onclick="downloadHints()">Download Results</button>
+    <button id="downloadEvalBtn" class="download-btn" style="display: none;" onclick="downloadEval()">Download Results</button>
 
-    <script src="hinter.js"></script>
+    <template id="taskSelector">
+        <select id="task" style="font-size: 16px;">
+            <option value="1">Task 1</option>
+            <option value="2">Task 2</option>
+        </select>
+    </template>
+
+    <script src="ielts_gpt_caller.js"></script>
     <script src="main.js"></script>
 </body>
 </html>

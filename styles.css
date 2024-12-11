@@ -80,64 +80,6 @@ pre {
     line-height: 1.6;
     overflow-y: visible;
 }
-
-/* Markdown 样式 */
-pre h1, pre h2, pre h3, pre h4 {
-    margin-top: 24px;
-    margin-bottom: 16px;
-    font-weight: 600;
-    line-height: 1.25;
-}
-
-pre h1 {
-    font-size: 2em;
-    border-bottom: 1px solid #eaecef;
-    padding-bottom: .3em;
-}
-
-pre h2 {
-    font-size: 1.5em;
-    border-bottom: 1px solid #eaecef;
-    padding-bottom: .3em;
-}
-
-pre h3 {
-    font-size: 1.25em;
-}
-
-pre h4 {
-    font-size: 1em;
-}
-
-pre p {
-    margin-bottom: 16px;
-}
-
-pre ul, pre ol {
-    padding-left: 2em;
-    margin-bottom: 16px;
-}
-
-pre li {
-    margin: 0.25em 0;
-}
-
-pre code {
-    padding: 0.2em 0.4em;
-    margin: 0;
-    font-size: 85%;
-    background-color: rgba(27,31,35,0.05);
-    border-radius: 3px;
-    font-family: SFMono-Regular, Consolas, "Liberation Mono", Menlo, monospace;
-}
-
-pre blockquote {
-    padding: 0 1em;
-    color: #6a737d;
-    border-left: 0.25em solid #dfe2e5;
-    margin: 0 0 16px 0;
-}
-
 pre.processing {
     background-color: #fff3cd;  /* 淡黄色背景 */
     animation: processingPulse 2s ease-in-out infinite;
@@ -173,8 +115,80 @@ pre.completed {
     width: 100%;
 }
 
-textarea#topicText {
+textarea {
     width: 100%;
     padding: 10px;
     box-sizing: border-box;
+}
+
+/* 标签页容器样式 */
+.tab-container {
+    width: 100%;
+    margin-top: 20px;
+}
+
+/* 标签按钮容器 */
+.tab-buttons {
+    display: flex;
+    border-bottom: 2px solid #454ea0;
+    margin-bottom: 20px;
+}
+
+/* 标签按钮样式 */
+.tab-button {
+    padding: 10px 20px;
+    background: #74b7dc;
+    border: 1px solid #74b7dc;
+    border-bottom: 2px solid #74b7dc;
+    margin-right: 4px;
+    border-radius: 8px 8px 0 0;
+    cursor: pointer;
+    position: relative;
+    top: 2px;
+}
+
+.tab-button:hover {
+    background: #2510e1;
+}
+
+.tab-button.active {
+    background: #454ea0;
+    border: 1px solid #454ea0;
+    border-bottom: none;
+    z-index: 1;
+}
+
+.tab-button.active:hover {
+    background: #2510e1;
+}
+
+/* 标签内容面板 */
+.tab-content {
+    display: none;
+}
+
+/* 激活状态的内容面板 */
+.tab-content.active {
+    display: block;
+}
+
+.download-btn {
+    background-color: #007bff;  /* 蓝色背景 */
+    color: white;              /* 白色文字 */
+    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    margin: 10px auto;        /* 上下边距10px，左右自动实现居中 */
+    display: none;            /* 默认隐藏 */
+}
+
+.download-btn:hover {
+    background-color: #0056b3;  /* 鼠标悬停时的深蓝色 */
+}
+
+/* 如果按钮的父容器没有设置文本居中，还需要添加以下样式 */
+#downloadHintBtn, #downloadEvalBtn {
+    display: block;           /* 当显示时使用块级元素 */
+    margin: 10px auto;        /* 上下边距10px，左右自动实现居中 */
 }
