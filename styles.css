@@ -123,8 +123,10 @@ textarea {
 
 /* 标签页容器样式 */
 .tab-container {
+    position: relative;
     width: 100%;
     margin-top: 20px;
+    min-height: 200px;
 }
 
 /* 标签按钮容器 */
@@ -191,4 +193,19 @@ textarea {
 #downloadHintBtn, #downloadEvalBtn {
     display: block;           /* 当显示时使用块级元素 */
     margin: 10px auto;        /* 上下边距10px，左右自动实现居中 */
+}
+
+/* 添加处理中的遮罩层样式 */
+.processing-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(128, 128, 128, 0.5);
+    z-index: 1000;
+    display: none;
+    pointer-events: all;
+    cursor: not-allowed;
+    border-radius: 4px;
 }

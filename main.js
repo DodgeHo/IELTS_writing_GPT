@@ -17,31 +17,33 @@ document.getElementById('uploadButton').addEventListener('click', function() {
 
 // 处理主题文本
 async function processTopic() {
-    const topicText = document.getElementById('topicText').value;
-    const apiKey = document.getElementById('apiKey').value;
-    const baseUrl = document.getElementById('baseUrl').value;
-    const modelName = document.getElementById('modelName').value;
-    const statusElement = document.getElementById('status');
-    const finalResults = document.getElementById('finalResults');
-    const downloadHintBtn = document.getElementById('downloadHintBtn');
-    const downloadEvalBtn = document.getElementById('downloadEvalBtn');
-    const task = document.getElementById('task').value;
-
-    if (!apiKey) {
-        alert('Please enter your API key');
-        return;
-    }
-
-    if (!topicText.trim()) {
-        alert('Please enter topic text');
-        return;
-    }
-
-    statusElement.textContent = "Processing...";
-    downloadHintBtn.style.display = 'none';
-    downloadEvalBtn.style.display = 'none';
-    
+    setProcessingState(true);
+    scrollToStatus();
     try {
+        const topicText = document.getElementById('topicText').value;
+        const apiKey = document.getElementById('apiKey').value;
+        const baseUrl = document.getElementById('baseUrl').value;
+        const modelName = document.getElementById('modelName').value;
+        const statusElement = document.getElementById('status');
+        const finalResults = document.getElementById('finalResults');
+        const downloadHintBtn = document.getElementById('downloadHintBtn');
+        const downloadEvalBtn = document.getElementById('downloadEvalBtn');
+        const task = document.getElementById('task').value;
+
+        if (!apiKey) {
+            alert('Please enter your API key');
+            return;
+        }
+
+        if (!topicText.trim()) {
+            alert('Please enter topic text');
+            return;
+        }
+
+        statusElement.textContent = "Processing...";
+        downloadHintBtn.style.display = 'none';
+        downloadEvalBtn.style.display = 'none';
+        
         const gptCaller = new IELTS_GPT_Caller(apiKey, baseUrl, modelName);
         const results = await gptCaller.generateHints(topicText, task);
         
@@ -54,6 +56,8 @@ async function processTopic() {
         statusElement.textContent = "Processing completed!";
     } catch (error) {
         statusElement.textContent = `Error: ${error.message}`;
+    } finally {
+        setProcessingState(false);
     }
 }
 
@@ -100,29 +104,31 @@ function switchTab(tabName) {
 } 
 
 async function processEvaluation() {
-    const essayText = document.getElementById('essayText').value;
-    const apiKey = document.getElementById('apiKey').value;
-    const baseUrl = document.getElementById('baseUrl').value;
-    const modelName = document.getElementById('modelName').value;
-    const statusElement = document.getElementById('status');
-    const finalResults = document.getElementById('finalResults');
-    const downloadEvalBtn = document.getElementById('downloadEvalBtn');
-    const task = document.getElementById('task').value;
-
-    if (!apiKey) {
-        alert('Please enter your API key');
-        return;
-    }
-
-    if (!essayText.trim()) {
-        alert('Please enter your essay');
-        return;
-    }
-
-    statusElement.textContent = "Processing...";
-    downloadEvalBtn.style.display = 'none';
-    
+    setProcessingState(true);
+    scrollToStatus();
     try {
+        const essayText = document.getElementById('essayText').value;
+        const apiKey = document.getElementById('apiKey').value;
+        const baseUrl = document.getElementById('baseUrl').value;
+        const modelName = document.getElementById('modelName').value;
+        const statusElement = document.getElementById('status');
+        const finalResults = document.getElementById('finalResults');
+        const downloadEvalBtn = document.getElementById('downloadEvalBtn');
+        const task = document.getElementById('task').value;
+
+        if (!apiKey) {
+            alert('Please enter your API key');
+            return;
+        }
+
+        if (!essayText.trim()) {
+            alert('Please enter your essay');
+            return;
+        }
+
+        statusElement.textContent = "Processing...";
+        downloadEvalBtn.style.display = 'none';
+        
         const gptCaller = new IELTS_GPT_Caller(apiKey, baseUrl, modelName);
         const evaluation = await gptCaller.generateEvaluation(essayText, task);
         
@@ -134,6 +140,8 @@ async function processEvaluation() {
         statusElement.textContent = "Processing completed!";
     } catch (error) {
         statusElement.textContent = `Error: ${error.message}`;
+    } finally {
+        setProcessingState(false);
     }
 }
 
@@ -145,4 +153,20 @@ function downloadEval() {
     element.href = URL.createObjectURL(file);
     element.download = 'evaluation_feedback_polish.md';
     element.click();
+} 
+
+function setProcessingState(isProcessing) {
+    const overlay = document.querySelector('.processing-overlay');
+    if (isProcessing) {
+        overlay.style.display = 'block';
+    } else {
+        overlay.style.display = 'none';
+    }
+} 
+
+function scrollToStatus() {
+    const statusElement = document.querySelector('.status-header');
+    if (statusElement) {
+        statusElement.scrollIntoView({ behavior: 'smooth' });
+    }
 } 

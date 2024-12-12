@@ -213,7 +213,7 @@ class IELTS_GPT_Caller {
         const essayLength = essayText.length;
         
         for (const prompt of prompts) {
-            this.updateStatus(`\nAnalyzing ${prompt.substring(essayLength + 36, essayLength + 50)}...`);
+            this.updateStatus(`\nAnalyzing ${prompt.substring(essayLength + 37, essayLength + 55)}...`);
             
             try {
                 conversationHistory.push({"role": "user", "content": prompt});
@@ -224,7 +224,7 @@ class IELTS_GPT_Caller {
                 assessments.push(cleanResponse);
                 
                 finalResultsElement.innerHTML = marked.parse(cleanResponse);
-                this.updateStatus(`✓ Completed ${prompt.substring(essayLength + 36, essayLength + 50)}...`);
+                this.updateStatus(`✓ Completed ${prompt.substring(essayLength + 37, essayLength + 55)}...`);
             } catch (e) {
                 this.updateStatus(`Failed to process prompt: ${e}`);
                 continue;
