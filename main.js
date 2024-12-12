@@ -147,7 +147,7 @@ async function processEvaluation() {
 
 // 添加下载评估结果的函数
 function downloadEval() {
-    const evaluation = document.getElementById('hints').textContent;
+    const evaluation = document.getElementById('finalResults').textContent;
     const element = document.createElement('a');
     const file = new Blob([evaluation], {type: 'text/markdown'});
     element.href = URL.createObjectURL(file);

@@ -131,12 +131,12 @@ class IELTS_GPT_Caller {
             if (loadedPrompts.length > 0) {
                 if (type === 'writing_sample'){
                     // 在第一个提示前添加文本
-                    loadedPrompts[0] = `${text}\n\n${loadedPrompts[0]}`;
+                    loadedPrompts[0] = `${text}\n${loadedPrompts[0]}`;
                     }
                 else{
                     //在每个提示前添加文本
                     for (let i = 0; i < loadedPrompts.length; i++) {
-                        loadedPrompts[i] = `${text}\n\n${loadedPrompts[i]}`;    
+                        loadedPrompts[i] = `${text}\n${loadedPrompts[i]}`;    
                     }
                 }
                 return loadedPrompts;
@@ -201,6 +201,7 @@ class IELTS_GPT_Caller {
     async generateEvaluation(essayText, task) {
         const prompts = await this.loadPrompts(essayText, task, 'evaluation');
         const assessments = [];
+        const feedbacks = [];
         const conversationHistory = [];
         const finalResultsElement = document.getElementById('finalResults');
         const statusElement = document.getElementById('status');
@@ -212,8 +213,9 @@ class IELTS_GPT_Caller {
         statusElement.classList.remove('completed');
         const essayLength = essayText.length;
         
+        // First process all aspect evaluations
         for (const prompt of prompts) {
-            this.updateStatus(`\nAnalyzing ${prompt.substring(essayLength + 37, essayLength + 55)}...`);
+            this.updateStatus(`\nAnalyzing ${prompt.substring(essayLength + 36, essayLength + 55)}...`);
             
             try {
                 conversationHistory.push({"role": "user", "content": prompt});
@@ -222,13 +224,40 @@ class IELTS_GPT_Caller {
                 
                 const cleanResponse = this.clean(response);
                 assessments.push(cleanResponse);
+                feedbacks.push(cleanResponse);
                 
                 finalResultsElement.innerHTML = marked.parse(cleanResponse);
-                this.updateStatus(`✓ Completed ${prompt.substring(essayLength + 37, essayLength + 55)}...`);
+                this.updateStatus(`✓ Completed ${prompt.substring(essayLength + 36, essayLength + 55)}...`);
             } catch (e) {
                 this.updateStatus(`Failed to process prompt: ${e}`);
                 continue;
             }
+        }
+
+        // Load and process summary prompt
+        try {
+            const summaryPrompt = await IELTS_GPT_Caller.loadTextFromFile('prompts/ielts/ielts_writing_prompt_summary.txt');
+            if (summaryPrompt) {
+                this.updateStatus("\nGenerating final summary...");
+                const finalPrompt = summaryPrompt + "\n" + feedbacks.join("\n");
+                const summaryResponse = await this.askLLM([{"role": "user", "content": finalPrompt}]);
+                assessments.push(this.clean(summaryResponse));
+            }
+        } catch (e) {
+            this.updateStatus(`Failed to generate summary: ${e}`);
+        }
+
+        // Load and process polish prompt
+        try {
+            const polishPrompt = await IELTS_GPT_Caller.loadTextFromFile('prompts/ielts/ielts_writing_prompt_polish.txt');
+            if (polishPrompt) {
+                this.updateStatus("\nGenerating polished version...");
+                const finalPolishPrompt = polishPrompt + "\n" + feedbacks.join("\n");
+                const polishResponse = await this.askLLM([{"role": "user", "content": finalPolishPrompt}]);
+                assessments.push(this.clean(polishResponse));
+            }
+        } catch (e) {
+            this.updateStatus(`Failed to generate polish: ${e}`);
         }
 
         this.updateStatus("\nAll analyzed. Generating final evaluation...");
